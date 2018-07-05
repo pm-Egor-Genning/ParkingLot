@@ -44,10 +44,11 @@ ParkingLot contract is deployed on Rinkeby network at `0x5500e6e2d3d659d3d11f3d4
 File `main.js` contains some interactions with deployed contract. It uses `web3.js` library.
 
 To run rinkeby network locally:
-  `geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="<your-account-id>"`
+```geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="<your-account-id>"```
 
 Put your account in main.js and run `npm start`:
 
+Example output of `main.js`:
 ```
 parkingSpaces: [ '0', '1', '2', '4', '5', '6', '7', '8', '9' ] 
 whereAmI: -1
