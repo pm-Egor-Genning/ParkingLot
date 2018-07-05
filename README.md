@@ -1,14 +1,22 @@
 # Parking Lot
-## Smart contract for ‘n’ parking spaces, hourly payment option and cost ‘y’ by hour:
-# Methods: 
-```
-enter - place vehicle into parkingPlace
-leave - allows vehicle to leave parking space transfer money depending on value (currentTimestamp-parkedSince)
-getEmptyParkingSpaces - returns list of empty parking spaces ids
-whereAmI - return parkingSpace for msg.sender
-getParkingCost - determines cost of parking space by msg.sender depending on value (currentTimestamp-parkedSince)
-```
+Here introduced simple contact that represents parking space with specified amount of slots and price per hour.
+
+In the constructor, contract accepts two numeric parameters: a number of slots and price per hour.
+# Methods
+Contract `ParkingLot.sol` has following methods:
+* `getEmptyParkingSpaces` - returns list of IDs of vacant parking slots;
+* `whereAmI` - returns ID of parking slot occupied by the sender
+or -1 if the sender didn't occupy any slot on this parking;
+* `enter` - accepts ID of parking slot and marks this slot as occupied by the sender;
+* `getParkingCost` - returns value that needs to be sent to `leave` method in order to successfully free
+occupied parking slot. This value represents parking cost and calculated by amount of hours lasts from
+last successful `enter` multiplied by the cost per hour;
+* `leave` - frees parking slot occupied by the sender. This method requires
+sufficient amount of money to be transferred within this transaction.
+If transferred amount of money exceeds the required amount, the difference will be transferred back to the sender.
+
 ## Tests:
+File `test/parking-lot.js` contains some unit tests for `ParkingLot` contract.
 ```
 WhereAmI if I am not on parking space
 WhereAmI the same as entered
@@ -27,20 +35,21 @@ Receives exception on leaving not entering
 Should return 0 cost when not entered
 Should return hours cost when entered more hour
 ```
-# How to:
 
-## to run rinkeby network locally:
-  `geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="your-account-id"`
+It order to run tests you need to run `npm run testrpc` and run `npm run test` in separate console.
 
-## Put your account in main.js and run `npm start`:
+# Play with contract in rinkeby network:
+ParkingLot contract is deployed on Rinkeby network at `0x5500e6e2d3d659d3d11f3d43083a9c858173fed2` address.
+
+File `main.js` contains some interactions with deployed contract. It uses `web3.js` library.
+
+To run rinkeby network locally:
+  `geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="<your-account-id>"`
+
+Put your account in main.js and run `npm start`:
 
 ```
 parkingSpaces: [ '0', '1', '2', '4', '5', '6', '7', '8', '9' ] 
 whereAmI: -1
 getParkingCost: 0
 ```
-
-## to run network for tests
-   `testrpc -p8544`
-
-## to test `npm test`
