@@ -1,8 +1,6 @@
 const Web3 = require('web3');
 
-const accounts = {
-    id: `0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c`,
-};
+const accountId = `0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c`;
 
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 const parkingLotAbi = [
@@ -189,28 +187,28 @@ const parkingLotContract = new web3.eth.Contract(parkingLotAbi, parkingLotContra
 
 async function main() {
     try {
-        const parkingSpaces = await callContractMethod(parkingLotContract, 'getEmptyParkingSpaces', {from: accounts.id});
+        const parkingSpaces = await callContractMethod(parkingLotContract, 'getEmptyParkingSpaces', {from: accountId});
         console.log("parkingSpaces:", parkingSpaces);
     } catch (e) {
         console.log("ERROR while getEmptyParkingSpaces", e);
     }
 
     try {
-        const whereAmI = await callContractMethod(parkingLotContract, 'whereAmI', {from: accounts.id});
+        const whereAmI = await callContractMethod(parkingLotContract, 'whereAmI', {from: accountId});
         console.log("whereAmI:", whereAmI);
     } catch (e) {
         console.log("ERROR while getting whereAmI", e);
     }
 
     try {
-        const getParkingCost = await callContractMethod(parkingLotContract, 'getParkingCost', {from: accounts.id});
+        const getParkingCost = await callContractMethod(parkingLotContract, 'getParkingCost', {from: accountId});
         console.log("getParkingCost:", getParkingCost);
     } catch (e) {
         console.log("ERROR while getting getParkingCost", e);
     }
 
     try {
-        const enter = await parkingLotContract.methods.enter(3).send({from: accounts.id});
+        const enter = await parkingLotContract.methods.enter(3).send({from: accountId});
         console.log(enter);
         console.log('account enters parking slot #1');
     } catch (e) {
@@ -218,14 +216,14 @@ async function main() {
     }
 
     try {
-        const parkingSpaces = await callContractMethod(parkingLotContract, 'getEmptyParkingSpaces', {from: accounts.id});
+        const parkingSpaces = await callContractMethod(parkingLotContract, 'getEmptyParkingSpaces', {from: accountId});
         console.log("parkingSpaces:", parkingSpaces);
     } catch (e) {
         console.log("ERROR while getEmptyParkingSpaces", e);
     }
 
     try {
-        await parkingLotContract.methods.leave().send({from: accounts.id});
+        await parkingLotContract.methods.leave().send({from: accountId});
         console.log('account 1 leaves parking');
     } catch (e) {
         console.log("ERROR", e);
