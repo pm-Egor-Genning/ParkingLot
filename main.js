@@ -212,7 +212,7 @@ async function main() {
     try {
         const enter = await parkingLotContract.methods.enter(3).send({from: accounts.id});
         console.log(enter);
-        console.log('account 2 enters parking slot #1');
+        console.log('account enters parking slot #1');
     } catch (e) {
         console.log("ERROR while getting enter", e);
     }
