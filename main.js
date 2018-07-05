@@ -1,6 +1,6 @@
 const Web3 = require('web3');
 
-const accountId = `0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c`;
+const accountId = `0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c`; // place your accountId
 
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 const parkingLotAbi = [
@@ -182,6 +182,7 @@ const parkingLotAbi = [
         "type": "function"
     }
 ];
+// place your ParkingLot contract address or use already deployed
 const parkingLotContractAddress = '0x5500e6e2d3d659d3d11f3d43083a9c858173fed2';
 const parkingLotContract = new web3.eth.Contract(parkingLotAbi, parkingLotContractAddress, {gas: 999999});
 

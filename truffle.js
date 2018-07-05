@@ -11,7 +11,6 @@
  *     gasPrice: 10000000000,
  *   },
  */
-// var HDWalletProvider = require("truffle-hdwallet-provider");
 
 module.exports = {
     solc: {
@@ -34,7 +33,7 @@ module.exports = {
             network_id: 3,*/
             host: "localhost", // Connect to geth on the specified
             port: 8545,
-            from: "0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c", // default address to use for any transaction Truffle makes during migrations
+            from: "0x1a7e8e6e59899cfbcb7f09c408e5cbf9886bac0c", // place your accountId
             network_id: 4,
             gas: 4612388 // Gas limit used for deploys
         }
