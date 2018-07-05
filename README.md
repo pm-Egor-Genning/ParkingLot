@@ -1,14 +1,24 @@
 # Parking Lot
-## Smart contract for ‘n’ parking spaces, hourly payment option and cost ‘y’ by hour:
-# Methods: 
-```
-enter - place vehicle into parkingPlace
-leave - allows vehicle to leave parking space transfer money depending on value (currentTimestamp-parkedSince)
-getEmptyParkingSpaces - returns list of empty parking spaces ids
-whereAmI - return parkingSpace for msg.sender
-getParkingCost - determines cost of parking space by msg.sender depending on value (currentTimestamp-parkedSince)
-```
+Here introduced simple contact that represents parking space with specified amount of slots and price per hour.
+
+In the constructor, contract accepts two numeric parameters: a number of slots and price per hour.
+# Methods
+Contract `ParkingLot.sol` has following methods:
+* `getEmptyParkingSpaces` - returns list of IDs of vacant parking slots;
+* `whereAmI` - returns ID of parking slot occupied by the sender
+or -1 if the sender didn't occupy any slot on this parking;
+* `enter` - accepts ID of parking slot and marks this slot as occupied by the sender;
+* `getParkingCost` - returns value that needs to be sent to `leave` method in order to successfully free
+occupied parking slot. This value represents parking cost and calculated by amount of hours lasts from
+last successful `enter` multiplied by the cost per hour;
+* `leave` - frees parking slot occupied by the sender. This method requires
+sufficient amount of money to be transferred within this transaction.
+If transferred amount of money exceeds the required amount, the difference will be transferred back to the sender.
+
+File `main.js` contains some interactions with contract deployed to network. It uses `web3.js` library.
+
 ## Tests:
+File `test/parking-lot.js` contains some unit tests for `ParkingLot` contract.
 ```
 WhereAmI if I am not on parking space
 WhereAmI the same as entered
