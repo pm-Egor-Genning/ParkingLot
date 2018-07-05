@@ -29,7 +29,7 @@ Should return hours cost when entered more hour
 ```
 # How to:
 
-## to run network localy:
+## to run rinkeby network locally:
   `geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="your-account-id"`
 
 ## Put your account in main.js and run `npm start`:
@@ -39,5 +39,8 @@ parkingSpaces: [ '0', '1', '2', '4', '5', '6', '7', '8', '9' ]
 whereAmI: -1
 getParkingCost: 0
 ```
+
+## to run network for tests
+   `testrpc -p8544`
 
 ## to test `npm test`
